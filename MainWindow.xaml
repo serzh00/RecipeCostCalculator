@@ -1,0 +1,55 @@
+﻿<Window x:Class="WpfApp8.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp8"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Ввод данных -->
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Ингредиент:" Margin="0,0,0,5"/>
+            <TextBox x:Name="IngredientName" Margin="0,0,0,5"/>
+
+            <TextBlock Text="Цена за упаковку (руб):" Margin="0,5,0,5"/>
+            <TextBox x:Name="Price" Margin="0,0,0,5"/>
+
+            <TextBlock Text="Количество в рецепте:" Margin="0,5,0,5"/>
+            <TextBox x:Name="Quantity" Margin="0,0,0,5"/>
+
+            <TextBlock Text="Единица измерения:" Margin="0,5,0,5"/>
+            <ComboBox x:Name="Unit" SelectedIndex="0">
+                <ComboBoxItem Content="г"/>
+                <ComboBoxItem Content="кг"/>
+                <ComboBoxItem Content="мл"/>
+                <ComboBoxItem Content="л"/>
+                <ComboBoxItem Content="шт"/>
+            </ComboBox>
+
+            <Button x:Name="AddButton" Content="Добавить" Margin="0,10" Click="AddButton_Click"/>
+        </StackPanel>
+
+        <!-- Список ингредиентов -->
+        <ListView x:Name="IngredientsList" Grid.Row="1" Margin="0,10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Ингредиент" DisplayMemberBinding="{Binding Name}" Width="120"/>
+                    <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding Cost}" Width="80"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Итоговая стоимость -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="Итого: " FontWeight="Bold"/>
+            <TextBlock x:Name="TotalCost" Text="0 руб." FontWeight="Bold"/>
+        </StackPanel>
+    </Grid>
+</Window>
